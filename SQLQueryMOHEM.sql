@@ -129,3 +129,14 @@ WHERE Email = "admin@example.com";
 
 DELETE FROM BorrowedBook
 WHERE Student_ID = 1 AND ISBN = 1234567890;
+
+
+--Update Statments
+UPDATE Admin
+SET Email = 'newadmin@example.com'
+WHERE Admin_ID = 1;
+
+UPDATE Book
+SET Description = 'Updated Book Description'
+WHERE ISBN = 1234567890;
+
