@@ -14,7 +14,7 @@ cnxn = pyodbc.connect(cnxn_str)
 # E3mel el cursor
 cursor = cnxn.cursor()
 
-# 2 INSERT FUNCTIONS
+# EL INSERT FUNCTIONS
 def insertStudent(cursor, student_id, password, username, email, country, city, street):
     cursor.execute(
         "INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -33,19 +33,27 @@ def insertAdmin(cursor, admin_id, password, username, email, country, city, stre
         (admin_id, password, username, email, country, city, street)
     )
 
-def insertBorrowedBooks(Borrowed_ID, Student_ID, ISBN):
+def insertBorrowedBook(cursor, borrowed_id, student_id, isbn):
     cursor.execute(
         "INSERT INTO BorrowedBook (Borrowed_ID, Student_ID, ISBN) VALUES (?, ?, ?)",
-        (Borrowed_ID, Student_ID, ISBN)
+        (borrowed_id, student_id, isbn)
     )
 
-# GARAB BA
-insertStudent(cursor, 3, '123', 'Jana', 'Jana@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
-insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
-insertAdmin(cursor, 2, '456', 'farida' , 'farida@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
-insertBorrowedBooks(cursor, 4, 3, 9789876543210)
+# EL 2 DELETE FUNCTIONS WITH CONDITIONS
+def deleteAdmin(cursor, email):
+    cursor.execute(
+        "DELETE FROM Admin WHERE Email = ?",
+        (email,)
+    )
 
-# UPDATE FUNCTIONS
+def deleteBorrowedBook(cursor, student_id, isbn):
+    cursor.execute(
+        "DELETE FROM BorrowedBook WHERE Student_ID = ? AND ISBN = ?",
+        (student_id, isbn)
+    )
+
+
+# EL 2 UPDATE FUNCTIONS WITH CONDITIONS
 def updateAdminEmail(cursor, admin_id, new_email):
     cursor.execute(
         "UPDATE Admin SET Email = ? WHERE Admin_ID = ?",
@@ -57,49 +65,62 @@ def updateBookDescription(cursor, isbn, new_description):
         "UPDATE Book SET Description = ? WHERE ISBN = ?",
         (new_description, isbn)
     )
-          
-# DELETE Functions
-def deleteAdmin(cursor, email):
-     cursor.execute(
-          "DELETE FROM Admin WHERE Email = ?",
-          (email,)
-     )
-
-def deleteBorrowedBook(cursor, studentID, ISBN):
-     cursor.execute(
-          "DELETE FROM BorrowedBook WHERE Student_ID = ? AND ISBN = ?",
-          (studentID, ISBN)
-     )
-
-def getAllStudents(cursor):
-    cursor.execute("SELECT * FROM Student")
-    students = cursor.fetchall()
-    print("Students:")
-    for student in students:
-        print(student)
 
 
-def getAllBooks(cursor):
-    cursor.execute("SELECT * FROM Book")
-    books = cursor.fetchall()
-    print("Books:")
-    for book in books:
-        print(book)
-
-def getAllAdmins(cursor):
+#SELECT FROM ANY TABLES
+def getAdmins(cursor):
     cursor.execute("SELECT * FROM Admin")
     admins = cursor.fetchall()
     print("Admins:")
     for admin in admins:
         print(admin)
 
-def getAllBorrowedBooks(cursor):
-    cursor.execute("SELECT * FROM BorrowedBooks")
+def getAuthors(cursor):
+    cursor.execute("SELECT * FROM Author")
+    authors = cursor.fetchall()
+    print("Authors:")
+    for author in authors:
+        print(author)
+
+def getBooks(cursor):
+    cursor.execute("SELECT * FROM Book")
+    books = cursor.fetchall()
+    print("Books:")
+    for book in books:
+        print(book)
+
+def getStudents(cursor):
+    cursor.execute("SELECT * FROM Student")
+    students = cursor.fetchall()
+    print("Students:")
+    for student in students:
+        print(student)
+
+def getBorrowedBooks(cursor):
+    cursor.execute("SELECT * FROM BorrowedBook")
     borrowed_books = cursor.fetchall()
     print("Borrowed Books:")
     for borrowed_book in borrowed_books:
         print(borrowed_book)
 
+def getCategories(cursor):
+    cursor.execute("SELECT * FROM BookCategory")
+    book_categories = cursor.fetchall()
+    print("Book Categories:")
+    for book_category in book_categories:
+        print(book_category)
+
+def getAuthorBooks(cursor):
+    cursor.execute("SELECT * FROM Author_Book")
+    author_books = cursor.fetchall()
+    print("Author Books:")
+    for author_book in author_books:
+        print(author_book)
+
+
+
+
+#SELECT FROM TABLE WITH JOINS
 def getStudentBorrowedBooks(cursor):
     cursor.execute("""
     SELECT 
@@ -108,18 +129,13 @@ def getStudentBorrowedBooks(cursor):
         s.Email AS StudentEmail,
         b.ISBN,
         b.Title,
-        bb.Borrowed_ID,
-        a.Admin_ID,
-        a.Username AS AdminUsername,
-        a.Email AS AdminEmail
+        bb.Borrowed_ID
     FROM 
         BorrowedBook bb
     JOIN 
         Student s ON bb.Student_ID = s.Student_ID
     JOIN 
         Book b ON bb.ISBN = b.ISBN
-    JOIN 
-        Admin a ON s.Student_ID = a.Admin_ID
     """)
     records = cursor.fetchall()
     print("Student Borrowed Books:")
@@ -127,13 +143,46 @@ def getStudentBorrowedBooks(cursor):
         print(record)
 
 
-# DISPLAY
-getAllStudents(cursor)
-getAllBooks(cursor)
-getAllAdmins(cursor)
-getAllBorrowedBooks(cursor)
-getStudentBorrowedBooks(cursor)
 
-# ZEE3 W E2FEL
+
+# KOL EL TESTS FY FUNCTION WAHDA
+def test():
+    # insert statments test
+    insertStudent(cursor, 11, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
+    insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
+    insertAdmin(cursor, 11, 'pass456', 'farida' , 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
+    insertBorrowedBook(cursor, 11, 3, 9789876543210)
+
+
+    #lazem w ehna ben add BorrowedBook elid yekoon unique w el ISBN beta3 el ketab yekoon mawgood asln
+    #el ids beta3t el admin wel student lazem tekoon unique
+
+
+
+    # #update statments test
+    updateAdminEmail(cursor, 2, 'newemail@admin.com')
+    updateBookDescription(cursor, 9789876543210, 'New Description')
+    
+    #delete statments test
+    deleteAdmin(cursor, 'newemail@admin.com')
+    deleteBorrowedBook(cursor, 3, 9789876543210)
+    
+    #select functions ba 
+    getStudents(cursor)
+    getBooks(cursor)
+    getAdmins(cursor)
+    getAuthors(cursor)
+    getBorrowedBooks(cursor)
+    getCategories(cursor)
+    getAuthorBooks(cursor)
+    getStudentBorrowedBooks(cursor)
+
+
+
+
+#garab ba
+test()
+
+# Zee3 w e2fel
 cnxn.commit()
 cnxn.close()
