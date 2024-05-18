@@ -45,8 +45,7 @@ def updateBookDescription(cursor, isbn, new_description):
         "UPDATE Book SET Description = ? WHERE ISBN = ?",
         (new_description, isbn)
     )
-
-
+    
 
 def getAllStudents(cursor):
     cursor.execute("SELECT * FROM Student")
@@ -63,11 +62,26 @@ def getAllBooks(cursor):
     for book in books:
         print(book)
 
+def getAllAdmins(cursor):
+    cursor.execute("SELECT * FROM Admin")
+    admins = cursor.fetchall()
+    print("Admins:")
+    for admin in admins:
+        print(admin)
+
+def getAllBorrowedBooks(cursor):
+    cursor.execute("SELECT * FROM BorrowedBooks")
+    borrowed_books = cursor.fetchall()
+    print("Borrowed Books:")
+    for borrowed_book in borrowed_books:
+        print(borrowed_book)
 
 
 # DISPLAY
 getAllStudents(cursor)
 getAllBooks(cursor)
+getAllAdmins(cursor)
+getAllBorrowedBooks(cursor)
 
 # ZEE3 W E2FEL
 cnxn.commit()
