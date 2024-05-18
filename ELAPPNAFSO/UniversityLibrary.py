@@ -28,14 +28,14 @@ def insertBook(cursor, isbn, publish_year, description, pages, title):
     )
 
 def insertAdmin(cursor, admin_id, password, username, email, country, city, street):
-    cursor.excute(
+    cursor.execute(
         "INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?, ?)",
         (admin_id, password, username, email, country, city, street)
     )
 
 def insertBorrowedBooks(Borrowed_ID, Student_ID, ISBN):
-    cursor.excute(
-        "INSERT INTO BorrowedBook (Borrowed_ID, Student_ID, ISBN) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    cursor.execute(
+        "INSERT INTO BorrowedBook (Borrowed_ID, Student_ID, ISBN) VALUES (?, ?, ?)",
         (Borrowed_ID, Student_ID, ISBN)
     )
 
@@ -100,12 +100,39 @@ def getAllBorrowedBooks(cursor):
     for borrowed_book in borrowed_books:
         print(borrowed_book)
 
+def getStudentBorrowedBooks(cursor):
+    cursor.execute("""
+    SELECT 
+        s.Student_ID,
+        s.Username AS StudentUsername,
+        s.Email AS StudentEmail,
+        b.ISBN,
+        b.Title,
+        bb.Borrowed_ID,
+        a.Admin_ID,
+        a.Username AS AdminUsername,
+        a.Email AS AdminEmail
+    FROM 
+        BorrowedBook bb
+    JOIN 
+        Student s ON bb.Student_ID = s.Student_ID
+    JOIN 
+        Book b ON bb.ISBN = b.ISBN
+    JOIN 
+        Admin a ON s.Student_ID = a.Admin_ID
+    """)
+    records = cursor.fetchall()
+    print("Student Borrowed Books:")
+    for record in records:
+        print(record)
+
 
 # DISPLAY
 getAllStudents(cursor)
 getAllBooks(cursor)
 getAllAdmins(cursor)
 getAllBorrowedBooks(cursor)
+getStudentBorrowedBooks(cursor)
 
 # ZEE3 W E2FEL
 cnxn.commit()
