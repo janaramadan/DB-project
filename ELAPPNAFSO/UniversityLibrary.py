@@ -45,7 +45,7 @@ insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK T
 insertAdmin(cursor, 2, '456', 'farida' , 'farida@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
 insertBorrowedBooks(cursor, 4, 3, 9789876543210)
 
-# 2 UPDATE FUNCTIONS
+# UPDATE FUNCTIONS
 def updateAdminEmail(cursor, admin_id, new_email):
     cursor.execute(
         "UPDATE Admin SET Email = ? WHERE Admin_ID = ?",
@@ -57,7 +57,19 @@ def updateBookDescription(cursor, isbn, new_description):
         "UPDATE Book SET Description = ? WHERE ISBN = ?",
         (new_description, isbn)
     )
+          
+# DELETE Functions
+def deleteAdmin(cursor, email):
+     cursor.execute(
+          "DELETE FROM Admin WHERE Email = ?",
+          (email,)
+     )
 
+def deleteBorrowedBook(cursor, studentID, ISBN):
+     cursor.execute(
+          "DELETE FROM BorrowedBook WHERE Student_ID = ? AND ISBN = ?",
+          (studentID, ISBN)
+     )
 
 def getAllStudents(cursor):
     cursor.execute("SELECT * FROM Student")
