@@ -71,7 +71,7 @@ CREATE TABLE Author_Book (
 
 -- El insert statements
 
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES 
+INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES
 (1, 'adminpass', 'admin', 'admin@example.com', 'EGYPT', 'Cairo', '123 Street');
 
 INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES 
@@ -121,3 +121,11 @@ JOIN Book b ON ab.ISBN = b.ISBN;
 SELECT bc.ISBN, b.Title AS BookTitle, bc.Name AS CategoryName
 FROM BookCategory bc
 JOIN Book b ON bc.ISBN = b.ISBN;
+
+
+--Delete Statments
+DELETE FROM Admin
+WHERE Email = "admin@example.com";
+
+DELETE FROM BorrowedBook
+WHERE Student_ID = 1 AND ISBN = 1234567890;
