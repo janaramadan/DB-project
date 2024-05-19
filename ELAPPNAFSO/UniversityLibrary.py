@@ -95,6 +95,37 @@ def updateBook(cursor, isbn, new_publish_year, new_description, new_pages, new_t
         (new_publish_year, new_description, new_pages, new_title, isbn)
     )
 
+#====================== ELREPORT ======================
+def report(cursor):
+    # kam book w student w  borrowedbook
+    cursor.execute("SELECT COUNT(*) FROM Book")
+    books_count = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM Student")
+    students_count = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM BorrowedBook")
+    borrowed_books_count = cursor.fetchone()[0]
+
+    # Print el countt
+    print("=== Library Database Report ===")
+    print(f"Books Count: {books_count}")
+    print(f"Students Count: {students_count}")
+    print(f"Borrowed Books Count: {borrowed_books_count}")
+
+    # Get the total number of books borrowed by each student fel report
+    cursor.execute("""
+        SELECT s.Student_ID, s.Username, COUNT(*) as TotalBooksBorrowed
+        FROM Student s
+        JOIN BorrowedBook bb ON s.Student_ID = bb.Student_ID
+        GROUP BY s.Student_ID, s.Username
+    """)
+    records = cursor.fetchall()
+
+    # Printingg
+    print("\nTotal number of books borrowed by each student:")
+    for record in records:
+        print(f"Student ID: {record[0]}, Username: {record[1]}, Total Books Borrowed: {record[2]}")
 
 
 
@@ -180,10 +211,10 @@ def getStudentBorrowedBooks(cursor):
 # KOL EL TESTS FY FUNCTION WAHDA
 def test():
     # insert statments test
-    # insertStudent(cursor, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
-    # insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
-    # insertAdmin(cursor, 'pass456', 'faridaaa' , 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
-    # insertBorrowedBook(cursor, 11, 3, 9789876543210)
+    insertStudent(cursor, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
+    insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
+    insertAdmin(cursor, 'pass456', 'faridaaa' , 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
+    insertBorrowedBook(cursor, 11, 3, 9789876543210)
 
 
     #lazem w ehna ben add BorrowedBook elid yekoon unique w el ISBN beta3 el ketab yekoon mawgood asln
@@ -219,6 +250,8 @@ def test():
     updateAdmin(cursor)
     updateStudent(cursor)
     updateBook(cursor)
+    report(cursor)
+
     
 
 
