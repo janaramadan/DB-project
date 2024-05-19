@@ -1,0 +1,152 @@
+[33mcommit 5ac0f9494c22223f9d9eea1bfcdb9d91668f9a56[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: omarse7a <omar.seha90@gmail.com>
+Date:   Sun May 19 23:46:33 2024 +0300
+
+    finished the gui
+
+[33mcommit 29bec4955cb6ff503a5c7b2840fa62c7c1ee7862[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 1eabed2 dc148bb
+Author: Omar Sameh <137312281+omarse7a@users.noreply.github.com>
+Date:   Sun May 19 17:16:34 2024 +0300
+
+    Merge pull request #5 from janaramadan/gui
+    
+    added view books
+
+[33mcommit dc148bb594d4889c6e64a51cb934fee6398516a6[m[33m ([m[1;31morigin/gui[m[33m, [m[1;32mgui[m[33m)[m
+Author: omarse7a <omar.seha90@gmail.com>
+Date:   Sun May 19 17:15:37 2024 +0300
+
+    added view books
+
+[33mcommit 1eabed2a24aa3a515b9e55a342d64881e8edcdcf[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Sun May 19 15:02:42 2024 +0300
+
+    Added functions for gui
+
+[33mcommit 3eee7d9f431fc06163f9750deb64300dd4688d06[m
+Author: omarse7a <omar.seha90@gmail.com>
+Date:   Sun May 19 14:13:59 2024 +0300
+
+    added the user signup
+
+[33mcommit 342797a5c5ac9c4a6a500b813c236fe15eb9d2d3[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Sun May 19 02:58:10 2024 +0300
+
+    FINAL SQL ADDED
+
+[33mcommit b4e307c7ec3a7d26238489be1e2b4dc1cf8ba851[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Sun May 19 02:56:31 2024 +0300
+
+    ALL FUNCTIONALITIES
+
+[33mcommit 8a86f1ff275fb25ed34516127eef63408c8aa984[m
+Merge: dd9bfe1 1eeb164
+Author: Omar Sameh <137312281+omarse7a@users.noreply.github.com>
+Date:   Sun May 19 00:41:19 2024 +0300
+
+    Merge pull request #4 from janaramadan/gui
+    
+    added gui
+
+[33mcommit 1eeb16489066592b21e47ef01cb5fd5889f84995[m
+Author: omarse7a <omar.seha90@gmail.com>
+Date:   Sun May 19 00:40:41 2024 +0300
+
+    added gui
+
+[33mcommit dd9bfe1712d49bea347708de1b4bca250e1533a6[m
+Author: faridayoussry <faridayoussry13@gmail.com>
+Date:   Sun May 19 00:25:35 2024 +0300
+
+    Added SELECT statement using joins
+
+[33mcommit 69982e76ac4e387159930f5a346c0a42fc41a81f[m
+Author: Ziad Ismael <117987711+ziadismael@users.noreply.github.com>
+Date:   Sat May 18 23:19:34 2024 +0300
+
+    DELETE functions added
+
+[33mcommit cefaad234c1b584a59da9d3d79db7a34165483ae[m
+Author: faridayoussry <faridayoussry13@gmail.com>
+Date:   Sat May 18 22:13:06 2024 +0300
+
+    Updated SELECT Statements
+
+[33mcommit b4d675b0af4366c60cd940ce36a7ce73fe5fd2e2[m
+Author: faridayoussry <faridayoussry13@gmail.com>
+Date:   Sat May 18 21:54:07 2024 +0300
+
+    Added 2 SELECT statements from any tables
+
+[33mcommit 80fdfb742811692fb8d57b6d074c3cd85bae5ace[m
+Merge: 9787547 3f72352
+Author: Mohamed Khamis <52880248+mohamed20045@users.noreply.github.com>
+Date:   Sat May 18 19:46:41 2024 +0300
+
+    Merge pull request #3 from janaramadan/Update-Statments
+    
+    Added Update Functions
+
+[33mcommit 3f7235224cf0491d64a42ec92e85ce787407509e[m
+Author: Mohamed Khamis <52880248+mohamed20045@users.noreply.github.com>
+Date:   Sat May 18 19:46:20 2024 +0300
+
+    Added Update Functions
+
+[33mcommit 9787547c7e4fed6d25050b04a52c235627c78093[m
+Merge: 534e6dc f92821a
+Author: Mohamed Khamis <52880248+mohamed20045@users.noreply.github.com>
+Date:   Sat May 18 18:03:57 2024 +0300
+
+    Merge pull request #2 from janaramadan/Update-Statments
+    
+    Added Updated Statments
+
+[33mcommit f92821aef0ce74445143709cde3b282afbae49cf[m
+Author: Mohamed Khamis <52880248+mohamed20045@users.noreply.github.com>
+Date:   Sat May 18 18:03:32 2024 +0300
+
+    Added Updated Statments
+
+[33mcommit 534e6dc6977322d36f7f0ca3f0e04e8c434e9271[m
+Merge: f7393c7 2587d4a
+Author: Ziad Ismael <117987711+ziadismael@users.noreply.github.com>
+Date:   Sat May 18 17:45:50 2024 +0300
+
+    Merge pull request #1 from janaramadan/DELETE-Statments
+    
+    ADDED the DELETE Statments
+
+[33mcommit 2587d4a874caebbd07896e28e5e2af8d074744b1[m
+Author: Ziad Ismael <ziad.ismael@icloud.com>
+Date:   Sat May 18 17:44:28 2024 +0300
+
+    ADDED the DELETE Statments
+
+[33mcommit f7393c75ff3453080d21059ffd91f1f48787ad9d[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Fri May 17 20:17:01 2024 +0300
+
+    elsql
+
+[33mcommit 67f9b5feb394846f252b585fe77512c31bba8397[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Fri May 17 20:14:16 2024 +0300
+
+    da el app
+
+[33mcommit 9b7a6e5c4a1bd1f5a9f0064145245c783ac778c4[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Fri May 17 20:13:46 2024 +0300
+
+    dy el models
+
+[33mcommit db90d394d2ac7976c1c8dc338cd8e934c7d34c83[m
+Author: janaramadan <146888383+janaramadan@users.noreply.github.com>
+Date:   Fri May 17 20:03:45 2024 +0300
+
+    Initial commit

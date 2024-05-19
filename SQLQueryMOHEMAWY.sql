@@ -16,7 +16,7 @@ CREATE TABLE Admin (
 
 
 CREATE TABLE Author (
-    Author_ID BIGINT NOT NULL PRIMARY KEY,
+    Author_ID BIGINT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(50) NOT NULL,
     PublishedBooks INT NOT NULL
 );
@@ -88,16 +88,16 @@ INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('ad
 
 
 --INSERT FEL AUTHOR 
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (1, 'J.K. Rowling', 7);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (2, 'George R.R. Martin', 5);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (3, 'Agatha Christie', 66);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (4, 'J.R.R. Tolkien', 4);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (5, 'Stephen King', 63);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (6, 'Isaac Asimov', 31);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (7, 'Jane Austen', 6);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (8, 'Mark Twain', 28);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (9, 'Ernest Hemingway', 9);
-INSERT INTO Author (Author_ID, Name, PublishedBooks) VALUES (10, 'Charles Dickens', 15);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('J.K. Rowling', 7);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('George R.R. Martin', 5);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Agatha Christie', 66);
+INSERT INTO Author ( Name, PublishedBooks) VALUES ('J.R.R. Tolkien', 4);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Stephen King', 63);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Isaac Asimov', 31);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Jane Austen', 6);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Mark Twain', 28);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Ernest Hemingway', 9);
+INSERT INTO Author (Name, PublishedBooks) VALUES ('Charles Dickens', 15);
 
 
 
@@ -183,6 +183,7 @@ SELECT * FROM Admin;
 SELECT * FROM Student;
 SELECT * FROM BookCategory;
 SELECT * FROM Author;
+SELECT * FROM Author_Book
 SELECT * FROM Book;
 
 

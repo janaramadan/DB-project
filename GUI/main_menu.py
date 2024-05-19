@@ -1,7 +1,7 @@
 import customtkinter as ctk
 
 class MainMenu:
-    def __init__(self, app_frame, signup, update_user, add_book, update_book, view_books):
+    def __init__(self, app_frame, signup, update_user, add_book, update_book, view_books, search):
         self.menu = ctk.CTkFrame(app_frame, width=600, height=500)
 
         self.title_label = ctk.CTkLabel(self.menu, text="Main Menu", font=ctk.CTkFont("Arial", size=42, weight="bold"))
@@ -22,7 +22,7 @@ class MainMenu:
         self.view_books = ctk.CTkButton(self.menu, text="View Books", command=view_books)
         self.view_books.place(relx=0.3, rely=0.8, anchor=ctk.CENTER)
         
-        self.search_books = ctk.CTkButton(self.menu, text="search Books")
+        self.search_books = ctk.CTkButton(self.menu, text="search Books", command=search)
         self.search_books.place(relx=0.7, rely=0.8, anchor=ctk.CENTER)
     
     def show(self):
