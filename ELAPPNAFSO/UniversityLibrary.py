@@ -14,6 +14,7 @@ cnxn = pyodbc.connect(cnxn_str)
 # E3mel el cursor
 cursor = cnxn.cursor()
 
+
 # EL INSERT FUNCTIONS
 def insertStudent(cursor, password, username, email, country, city, street):
     cursor.execute(
