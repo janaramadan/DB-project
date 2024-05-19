@@ -40,7 +40,7 @@ def insertBorrowedBook(cursor, borrowed_id, student_id, isbn):
         (borrowed_id, student_id, isbn)
     )
 
-# EL 2 DELETE FUNCTIONS WITH CONDITIONS
+#EL DELETE FUNCTIONS WITH CONDITIONS
 def deleteAdmin(cursor, email):
     cursor.execute(
         "DELETE FROM Admin WHERE Email = ?",
@@ -53,8 +53,7 @@ def deleteBorrowedBook(cursor, student_id, isbn):
         (student_id, isbn)
     )
 
-
-# EL 2 UPDATE FUNCTIONS WITH CONDITIONS
+#EL UPDATE FUNCTIONS WITH CONDITIONS
 def updateAdminEmail(cursor, admin_id, new_email):
     cursor.execute(
         "UPDATE Admin SET Email = ? WHERE Admin_ID = ?",
@@ -67,9 +66,7 @@ def updateBookDescription(cursor, isbn, new_description):
         (new_description, isbn)
     )
 
-
-#===================================FUNCTIONS NEEDED IN GUI===================================
-
+#===================== FUNCTIONS NEEDED IN GUI ==============================
 def insertCategory(cursor, isbn, name):
     cursor.execute(
         "INSERT INTO BookCategory (ISBN, Name) VALUES (?, ?)",
@@ -88,16 +85,14 @@ def updateStudent(cursor, new_username, new_email, new_country, new_city, new_st
         (new_username, new_email, new_country, new_city, new_street)
     )
 
-
 def updateBook(cursor, isbn, new_publish_year, new_description, new_pages, new_title):
     cursor.execute(
         "UPDATE Book SET PublishYear = ?, Description = ?, Pages = ?, Title = ? WHERE ISBN = ?",
         (new_publish_year, new_description, new_pages, new_title, isbn)
     )
 
-#====================== ELREPORT ======================
+# REPORT 
 def report(cursor):
-    # kam book w student w  borrowedbook
     cursor.execute("SELECT COUNT(*) FROM Book")
     books_count = cursor.fetchone()[0]
 
@@ -107,13 +102,11 @@ def report(cursor):
     cursor.execute("SELECT COUNT(*) FROM BorrowedBook")
     borrowed_books_count = cursor.fetchone()[0]
 
-    # Print el countt
     print("=== Library Database Report ===")
     print(f"Books Count: {books_count}")
     print(f"Students Count: {students_count}")
     print(f"Borrowed Books Count: {borrowed_books_count}")
 
-    # Get the total number of books borrowed by each student fel report
     cursor.execute("""
         SELECT s.Student_ID, s.Username, COUNT(*) as TotalBooksBorrowed
         FROM Student s
@@ -122,15 +115,12 @@ def report(cursor):
     """)
     records = cursor.fetchall()
 
-    # Printingg
     print("\nTotal number of books borrowed by each student:")
     for record in records:
         print(f"Student ID: {record[0]}, Username: {record[1]}, Total Books Borrowed: {record[2]}")
+        
 
-
-
-
-#SELECT FROM ANY TABLES
+# EL SELECT FROM ANY TABLES
 def getAdmins(cursor):
     cursor.execute("SELECT * FROM Admin")
     admins = cursor.fetchall()
@@ -180,10 +170,7 @@ def getAuthorBooks(cursor):
     for author_book in author_books:
         print(author_book)
 
-
-
-
-#SELECT FROM TABLE WITH JOINS
+# SELECT FROM TABLE WITH JOINS
 def getStudentBorrowedBooks(cursor):
     cursor.execute("""
     SELECT 
@@ -205,39 +192,31 @@ def getStudentBorrowedBooks(cursor):
     for record in records:
         print(record)
 
-
-
-
-# KOL EL TESTS FY FUNCTION WAHDA
+# TEST 
 def test():
-    # insert statments test
+    # Insert statements test
     insertStudent(cursor, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
     insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
-    insertAdmin(cursor, 'pass456', 'faridaaa' , 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
+    insertAdmin(cursor, 'pass456', 'faridaaa', 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
     insertBorrowedBook(cursor, 11, 3, 9789876543210)
+    insertCategory(cursor, 9789876543210, 'Comedy')
 
 
-    #lazem w ehna ben add BorrowedBook elid yekoon unique w el ISBN beta3 el ketab yekoon mawgood asln
-    #el ids beta3t el admin wel student lazem tekoon unique
-
-
-
-    # #update statments test
+    #  EL Update statements test
     updateAdminEmail(cursor, 2, 'newemail@admin.com')
     updateBookDescription(cursor, 9789876543210, 'New Description')
-    
-    #delete statments test
-    deleteAdmin(cursor, 'newemail@admin.com')
-    deleteBorrowedBook(cursor, 3, 9789876543210)
 
-    insertCategory(cursor, 9780553104540, 'Comedy')
+    # EL  Delete statements test
+    # deleteAdmin(cursor, 'newemail@admin.com')
+    # deleteBorrowedBook(cursor, 3, 9789876543210)
+
+
+    insertCategory(cursor, 9780743273565, 'Comedy')
     updateAdmin(cursor, 'NewUsernameADMIN', 'newadmin@example.com', 'Country', 'City', 'NewStreet')
     updateStudent(cursor, 'NewUsernameSTUDENT', 'newstudent@example.com', 'Country', 'City', 'NewStreet')
     updateBook(cursor, 9780061120053, '2024-01-01', 'New Description', 400, 'New Title')
 
-
-    
-    #select functions ba 
+  
     getStudents(cursor)
     getBooks(cursor)
     getAdmins(cursor)
@@ -246,20 +225,13 @@ def test():
     getCategories(cursor)
     getAuthorBooks(cursor)
     getStudentBorrowedBooks(cursor)
-    insertCategory(cursor)
-    updateAdmin(cursor)
-    updateStudent(cursor)
-    updateBook(cursor)
+
+    # EL report
     report(cursor)
 
-    
 
-
-
-
-#garab ba
 test()
 
-# Zee3 w e2fel
+# ZEE3 W E2FEL
 cnxn.commit()
 cnxn.close()
