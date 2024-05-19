@@ -1,9 +1,20 @@
+import pyodbc
+import datetime
 import customtkinter as ctk
+from main_menu import MainMenu
 from user import Signup, UpdateUser
 from book import AddBook, UpdateBook
-from main_menu import MainMenu
 
+# database setup
+cnxn_str=("Driver={ODBC Driver 17 for SQL Server};"
+          "Server=localhost;"
+          "Database=UniversityLibrary;"
+          "Trusted_Connection=yes;")
+cnxn = pyodbc.connect(cnxn_str)
+# cursor
+mycursor = cnxn.cursor()
 
+# navigation functions
 def back_to_menu(view):
     view.hide()
     main_menu.show()
@@ -25,14 +36,15 @@ def open_update_book():
     update_book.show()
 
 # setup
+ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 app = ctk.CTk()
 app.title("FCAI Library")
 app.geometry("800x600")
 
 main_menu = MainMenu(app, open_signup, open_update_user, open_add_book, open_update_book)
-signup = Signup(app, back_to_menu)
-update_user = UpdateUser(app, back_to_menu)
-add_book = AddBook(app, back_to_menu)
+signup = Signup(app, mycursor, back_to_menu)
+update_user = UpdateUser(app, mycursor, back_to_menu)
+add_book = AddBook(app, mycursor, back_to_menu)
 update_book = UpdateBook(app, back_to_menu)
 
 # first page when you open

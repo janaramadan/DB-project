@@ -5,7 +5,7 @@ GO
 
 -- TABLESS CREATION
 CREATE TABLE Admin (
-    Admin_ID BIGINT NOT NULL PRIMARY KEY,
+    Admin_ID BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Password VARCHAR(50) NOT NULL,
     Username VARCHAR(20) NOT NULL,
     Email VARCHAR(50) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE Book (
 
 
 CREATE TABLE Student (
-    Student_ID BIGINT NOT NULL PRIMARY KEY,
+    Student_ID BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Password VARCHAR(50) NOT NULL,
     Username VARCHAR(20) NOT NULL,
     Email VARCHAR(50) NOT NULL,
@@ -74,16 +74,16 @@ CREATE TABLE Author_Book (
 
 
 --INSERT FEL ADMIN
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (1, 'adminpass1', 'Jana', 'admin1@example.com', 'Egypt', 'Cairo', '123 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (2, 'adminpass2', 'Farida', 'admin2@example.com', 'Egypt', 'Alexandria', '456 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (3, 'adminpass3', 'Omar', 'admin3@example.com', 'Egypt', 'Giza', '789 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (4, 'adminpass4', 'Ziad', 'admin4@example.com', 'Egypt', 'Mansoura', '10 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (5, 'adminpass5', 'Khamis', 'admin5@example.com', 'Egypt', 'Aswan', '11 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (6, 'adminpass6', 'Ibrahem', 'admin6@example.com', 'Egypt', 'Luxor', '12 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (7, 'adminpass7', 'admin7', 'admin7@example.com', 'Egypt', 'Suez', '13 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (8, 'adminpass8', 'admin8', 'admin8@example.com', 'Egypt', 'Ismailia', '14 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (9, 'adminpass9', 'admin9', 'admin9@example.com', 'Egypt', 'Fayoum', '15 Street');
-INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (10, 'adminpass10', 'admin10', 'admin10@example.com', 'Egypt', 'Hurghada', '16 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass1', 'Jana', 'admin1@example.com', 'Egypt', 'Cairo', '123 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass2', 'Farida', 'admin2@example.com', 'Egypt', 'Alexandria', '456 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass3', 'Omar', 'admin3@example.com', 'Egypt', 'Giza', '789 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass4', 'Ziad', 'admin4@example.com', 'Egypt', 'Mansoura', '10 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass5', 'Khamis', 'admin5@example.com', 'Egypt', 'Aswan', '11 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass6', 'Ibrahem', 'admin6@example.com', 'Egypt', 'Luxor', '12 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass7', 'admin7', 'admin7@example.com', 'Egypt', 'Suez', '13 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass8', 'admin8', 'admin8@example.com', 'Egypt', 'Ismailia', '14 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass9', 'admin9', 'admin9@example.com', 'Egypt', 'Fayoum', '15 Street');
+INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES ('adminpass10', 'admin10', 'admin10@example.com', 'Egypt', 'Hurghada', '16 Street');
 
 
 
@@ -117,16 +117,16 @@ INSERT INTO Book (ISBN, PublishYear, Description, Pages, Title) VALUES (97803167
 
 
 --INSERT FEL STUDENT 
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (1, 'studentpass1', 'Jana', 'student1@example.com', 'Egypt', 'Cairo', '1 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (2, 'studentpass2', 'Farida', 'student2@example.com', 'Egypt', 'Alexandria', '2 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (3, 'studentpass3', 'Omar', 'student3@example.com', 'Egypt', 'Giza', '3 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (4, 'studentpass4', 'Ziad', 'student4@example.com', 'Egypt', 'Mansoura', '4 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (5, 'studentpass5', 'Ibrahem', 'student5@example.com', 'Egypt', 'Aswan', '5 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (6, 'studentpass6', 'Khamis', 'student6@example.com', 'Egypt', 'Luxor', '6 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (7, 'studentpass7', 'student7', 'student7@example.com', 'Egypt', 'Suez', '7 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (8, 'studentpass8', 'student8', 'student8@example.com', 'Egypt', 'Ismailia', '8 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (9, 'studentpass9', 'student9', 'student9@example.com', 'Egypt', 'Fayoum', '9 Street');
-INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (10, 'studentpass10', 'student10', 'student10@example.com', 'Egypt', 'Hurghada', '10 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass1', 'Jana', 'student1@example.com', 'Egypt', 'Cairo', '1 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass2', 'Farida', 'student2@example.com', 'Egypt', 'Alexandria', '2 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass3', 'Omar', 'student3@example.com', 'Egypt', 'Giza', '3 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass4', 'Ziad', 'student4@example.com', 'Egypt', 'Mansoura', '4 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass5', 'Ibrahem', 'student5@example.com', 'Egypt', 'Aswan', '5 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass6', 'Khamis', 'student6@example.com', 'Egypt', 'Luxor', '6 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass7', 'student7', 'student7@example.com', 'Egypt', 'Suez', '7 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass8', 'student8', 'student8@example.com', 'Egypt', 'Ismailia', '8 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass9', 'student9', 'student9@example.com', 'Egypt', 'Fayoum', '9 Street');
+INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES ('studentpass10', 'student10', 'student10@example.com', 'Egypt', 'Hurghada', '10 Street');
 
 
 
@@ -180,10 +180,11 @@ INSERT INTO Author_Book (Author_ID, ISBN) VALUES (10, 9780316769488);
 -- EL Select statements
 
 SELECT * FROM Admin;
+SELECT * FROM Student;
 SELECT * FROM BookCategory;
 SELECT * FROM Author;
 SELECT * FROM Book;
-SELECT * FROM Student;
+
 
 -- Select Borrowed Books W Student W Book details
 SELECT bb.Borrowed_ID, bb.Student_ID, s.Username AS StudentName, bb.ISBN, b.Title AS BookTitle

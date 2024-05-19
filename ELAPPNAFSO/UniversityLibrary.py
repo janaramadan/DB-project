@@ -15,10 +15,10 @@ cnxn = pyodbc.connect(cnxn_str)
 cursor = cnxn.cursor()
 
 # EL INSERT FUNCTIONS
-def insertStudent(cursor, student_id, password, username, email, country, city, street):
+def insertStudent(cursor, password, username, email, country, city, street):
     cursor.execute(
-        "INSERT INTO Student (Student_ID, Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (student_id, password, username, email, country, city, street)
+        "INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?)",
+        (password, username, email, country, city, street)
     )
 
 def insertBook(cursor, isbn, publish_year, description, pages, title):
@@ -27,10 +27,10 @@ def insertBook(cursor, isbn, publish_year, description, pages, title):
         (isbn, publish_year, description, pages, title)
     )
 
-def insertAdmin(cursor, admin_id, password, username, email, country, city, street):
+def insertAdmin(cursor, password, username, email, country, city, street):
     cursor.execute(
-        "INSERT INTO Admin (Admin_ID, Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (admin_id, password, username, email, country, city, street)
+        "INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?)",
+        (password, username, email, country, city, street)
     )
 
 def insertBorrowedBook(cursor, borrowed_id, student_id, isbn):
@@ -148,10 +148,10 @@ def getStudentBorrowedBooks(cursor):
 # KOL EL TESTS FY FUNCTION WAHDA
 def test():
     # insert statments test
-    insertStudent(cursor, 11, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
-    insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
-    insertAdmin(cursor, 11, 'pass456', 'farida' , 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
-    insertBorrowedBook(cursor, 11, 3, 9789876543210)
+    # insertStudent(cursor, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
+    # insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
+    # insertAdmin(cursor, 'pass456', 'faridaaa' , 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
+    # insertBorrowedBook(cursor, 11, 3, 9789876543210)
 
 
     #lazem w ehna ben add BorrowedBook elid yekoon unique w el ISBN beta3 el ketab yekoon mawgood asln

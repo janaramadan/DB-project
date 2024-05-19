@@ -1,8 +1,21 @@
 import customtkinter as ctk
 
+def insertStudent(cursor, password, username, email, country, city, street):
+    cursor.execute(
+        "INSERT INTO Student (Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?)",
+        (password, username, email, country, city, street)
+    )
+
+def insertAdmin(cursor, password, username, email, country, city, street):
+    cursor.execute(
+        "INSERT INTO Admin (Password, Username, Email, Country, City, Street) VALUES (?, ?, ?, ?, ?, ?)",
+        (password, username, email, country, city, street)
+    )
+
 class Signup:
 
-    def __init__(self, app_frame, back_action):
+    def __init__(self, app_frame, cursor, back_action):
+        self.cursor = cursor
         self.formCard = ctk.CTkFrame(app_frame, width=600, height=500)
 
         self.title_label = ctk.CTkLabel(self.formCard, text="Signup", font=ctk.CTkFont("Arial", size=42, weight="bold"))
@@ -29,7 +42,7 @@ class Signup:
         self.is_admin = ctk.CTkCheckBox(self.formCard , text="Is this admin account?",checkbox_height=18, checkbox_width=18)
         self.is_admin.place(relx=0.5, rely=0.84, anchor=ctk.CENTER)
 
-        self.signup_button = ctk.CTkButton(self.formCard, text="Signup", width=190)
+        self.signup_button = ctk.CTkButton(self.formCard, text="Signup", width=190, command=self.signup_action)
         self.signup_button.place(relx=0.5, rely=0.92, anchor=ctk.CENTER)
 
         self.back_button = ctk.CTkButton(self.formCard, text="Back", fg_color="transparent", width=50, command=lambda: back_action(self))
@@ -40,13 +53,19 @@ class Signup:
 
     def hide(self):
         self.formCard.pack_forget()
+    
+    def signup_action(self):
+        if self.is_admin.get():
+            insertAdmin(self.cursor, self.password.get(), self.username.get(), self.email.get(), self.country.get(), self.city.get(),self.street.get())
+        else:
+            insertStudent(self.cursor, self.password.get(), self.username.get(), self.email.get(), self.country.get(), self.city.get(),self.street.get())
 
 
 
 
 class UpdateUser:
 
-    def __init__(self, app_frame, back_action):
+    def __init__(self, app_frame, cursor, back_action):
         self.formCard = ctk.CTkFrame(app_frame, width=600, height=500)
 
         self.title_label = ctk.CTkLabel(self.formCard, text="Update User", font=ctk.CTkFont("Arial", size=42, weight="bold"))
@@ -73,7 +92,7 @@ class UpdateUser:
         self.is_admin = ctk.CTkCheckBox(self.formCard , text="Is this admin account?",checkbox_height=18, checkbox_width=18)
         self.is_admin.place(relx=0.5, rely=0.84, anchor=ctk.CENTER)
 
-        self.update_button = ctk.CTkButton(self.formCard, text="Update", width=190)
+        self.update_button = ctk.CTkButton(self.formCard, text="Update", width=190, command=self.update_action)
         self.update_button.place(relx=0.5, rely=0.92, anchor=ctk.CENTER)
 
         self.back_button = ctk.CTkButton(self.formCard, text="Back", fg_color="transparent", width=50, command=lambda: back_action(self))
@@ -84,3 +103,6 @@ class UpdateUser:
 
     def hide(self):
         self.formCard.pack_forget()
+
+    def update_action(self):
+        pass
