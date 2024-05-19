@@ -67,6 +67,37 @@ def updateBookDescription(cursor, isbn, new_description):
     )
 
 
+#===================================FUNCTIONS NEEDED IN GUI===================================
+
+def insertCategory(cursor, isbn, name):
+    cursor.execute(
+        "INSERT INTO BookCategory (ISBN, Name) VALUES (?, ?)",
+        (isbn, name)
+    )
+
+def updateAdmin(cursor, new_username, new_email, new_country, new_city, new_street):
+    cursor.execute(
+        "UPDATE Admin SET Username = ?, Email = ?, Country = ?, City = ?, Street = ?",
+        (new_username, new_email, new_country, new_city, new_street)
+    )
+
+def updateStudent(cursor, new_username, new_email, new_country, new_city, new_street):
+    cursor.execute(
+        "UPDATE Student SET Username = ?, Email = ?, Country = ?, City = ?, Street = ?",
+        (new_username, new_email, new_country, new_city, new_street)
+    )
+
+
+def updateBook(cursor, isbn, new_publish_year, new_description, new_pages, new_title):
+    cursor.execute(
+        "UPDATE Book SET PublishYear = ?, Description = ?, Pages = ?, Title = ? WHERE ISBN = ?",
+        (new_publish_year, new_description, new_pages, new_title, isbn)
+    )
+
+
+
+
+
 #SELECT FROM ANY TABLES
 def getAdmins(cursor):
     cursor.execute("SELECT * FROM Admin")
@@ -166,6 +197,13 @@ def test():
     #delete statments test
     deleteAdmin(cursor, 'newemail@admin.com')
     deleteBorrowedBook(cursor, 3, 9789876543210)
+
+    insertCategory(cursor, 9780553104540, 'Comedy')
+    updateAdmin(cursor, 'NewUsernameADMIN', 'newadmin@example.com', 'Country', 'City', 'NewStreet')
+    updateStudent(cursor, 'NewUsernameSTUDENT', 'newstudent@example.com', 'Country', 'City', 'NewStreet')
+    updateBook(cursor, 9780061120053, '2024-01-01', 'New Description', 400, 'New Title')
+
+
     
     #select functions ba 
     getStudents(cursor)
@@ -176,6 +214,11 @@ def test():
     getCategories(cursor)
     getAuthorBooks(cursor)
     getStudentBorrowedBooks(cursor)
+    insertCategory(cursor)
+    updateAdmin(cursor)
+    updateStudent(cursor)
+    updateBook(cursor)
+    
 
 
 
