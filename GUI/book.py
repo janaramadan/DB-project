@@ -50,13 +50,24 @@ class AddBook:
     def hide(self):
         self.formCard.pack_forget()
 
+    def reset(self):
+        self.title.delete(0, ctk.END)
+        self.ISBN.delete(0, ctk.END)
+        self.description.delete("1.0", ctk.END)
+        self.category.set("Any")
+        self.pub_date.delete(0, ctk.END)
+        self.pages_num.delete(0, ctk.END)
+
     def add_action(self):
         insertBook(self.cursor, self.ISBN.get(), self.pub_date.get(), self.description.get("1.0", ctk.END).strip(), self.pages_num.get(), self.title.get())
         # insert category??
+        # self.cursor.commit()
+        self.reset()
 
     
 class UpdateBook:
-    def __init__(self, app_frame, back_action):
+    def __init__(self, app_frame, cursor, back_action):
+        self.cursor = cursor
         self.formCard = ctk.CTkFrame(app_frame, width=600, height=500)
 
         self.title_label = ctk.CTkLabel(self.formCard, text="Update Book", font=ctk.CTkFont("Arial", size=42, weight="bold"))
@@ -97,3 +108,12 @@ class UpdateBook:
 
     def hide(self):
         self.formCard.pack_forget()
+
+    def reset(self):
+        self.username.delete(0, ctk.END)
+        self.email.delete(0, ctk.END)
+        self.street.delete(0, ctk.END)
+        self.city.delete(0, ctk.END)
+        self.country.delete(0, ctk.END)
+        self.password.delete(0, ctk.END)
+        self.is_admin.deselect()

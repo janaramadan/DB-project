@@ -12,6 +12,20 @@ def insertAdmin(cursor, password, username, email, country, city, street):
         (password, username, email, country, city, street)
     )
 
+def getStudents(cursor):
+    cursor.execute("SELECT * FROM Student")
+    students = cursor.fetchall()
+    print("Students:")
+    for student in students:
+        print(student)
+
+def getAdmins(cursor):
+    cursor.execute("SELECT * FROM Admin")
+    admins = cursor.fetchall()
+    print("Admins:")
+    for admin in admins:
+        print(admin)
+
 class Signup:
 
     def __init__(self, app_frame, cursor, back_action):
@@ -53,12 +67,25 @@ class Signup:
 
     def hide(self):
         self.formCard.pack_forget()
+
+    def reset(self):
+        self.username.delete(0, ctk.END)
+        self.email.delete(0, ctk.END)
+        self.street.delete(0, ctk.END)
+        self.city.delete(0, ctk.END)
+        self.country.delete(0, ctk.END)
+        self.password.delete(0, ctk.END)
+        self.is_admin.deselect()
     
     def signup_action(self):
         if self.is_admin.get():
             insertAdmin(self.cursor, self.password.get(), self.username.get(), self.email.get(), self.country.get(), self.city.get(),self.street.get())
+            getAdmins(self.cursor)
         else:
             insertStudent(self.cursor, self.password.get(), self.username.get(), self.email.get(), self.country.get(), self.city.get(),self.street.get())
+            getStudents(self.cursor)
+        self.cursor.commit()
+        self.reset()
 
 
 
@@ -103,6 +130,17 @@ class UpdateUser:
 
     def hide(self):
         self.formCard.pack_forget()
+    
+    def reset(self):
+        self.username.delete(0, ctk.END)
+        self.email.delete(0, ctk.END)
+        self.street.delete(0, ctk.END)
+        self.city.delete(0, ctk.END)
+        self.country.delete(0, ctk.END)
+        self.password.delete(0, ctk.END)
+        self.is_admin.deselect()
 
     def update_action(self):
+        # self.cursor.commit()
+        self.reset()
         pass

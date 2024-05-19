@@ -4,6 +4,7 @@ import customtkinter as ctk
 from main_menu import MainMenu
 from user import Signup, UpdateUser
 from book import AddBook, UpdateBook
+from show_books import ViewBooks
 
 # database setup
 cnxn_str=("Driver={ODBC Driver 17 for SQL Server};"
@@ -35,17 +36,22 @@ def open_update_book():
     main_menu.hide()
     update_book.show()
 
+def open_view_books():
+    main_menu.hide()
+    show_books.show()
+
 # setup
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 app = ctk.CTk()
 app.title("FCAI Library")
 app.geometry("800x600")
 
-main_menu = MainMenu(app, open_signup, open_update_user, open_add_book, open_update_book)
+main_menu = MainMenu(app, open_signup, open_update_user, open_add_book, open_update_book, open_view_books)
 signup = Signup(app, mycursor, back_to_menu)
 update_user = UpdateUser(app, mycursor, back_to_menu)
 add_book = AddBook(app, mycursor, back_to_menu)
-update_book = UpdateBook(app, back_to_menu)
+update_book = UpdateBook(app, mycursor, back_to_menu)
+show_books = ViewBooks(app, mycursor, back_to_menu)
 
 # first page when you open
 main_menu.show()
