@@ -14,33 +14,31 @@ def insertCategory(cursor, isbn, name):
     )
 
 def insertAuthor(cursor, isbn, author_name):
+    # Check if the author already exists
     cursor.execute("SELECT author_id FROM author WHERE name = ?", (author_name,))
     author = cursor.fetchone()
     
     if author:
-        author_id = author[0]
+        author_id = int(author[0])
     else:
-        # Insert new author
-        cursor.execute("INSERT INTO author (Name, PublishedBooks) OUTPUT INSERTED.author_id VALUES (?, ?)", (author_name, 1))
-        author_id = cursor.fetchone()[0]
+        # Insert new author and get the inserted author_id
+        cursor.execute("""
+            INSERT INTO author (Name, PublishedBooks)
+            OUTPUT INSERTED.author_id
+            VALUES (?, ?)
+        """, (author_name, 1))
+        author_id = int(cursor.fetchone()[0])
 
+    # Insert into author_book
     cursor.execute("INSERT INTO author_book (author_id, isbn) VALUES (?, ?)", (author_id, isbn))
 
-# edit book functions
-def get_book(cursor, isbn):
-    cursor.execute("""  SELECT Book.ISBN,Book.title, Book.PublishYear, Book.pages, Book.description
-                            FROM
-                                Book
-                            WHERE 
-                                Book.ISBN = ?;""", isbn)
-    book = cursor.fetchone()
-    return book
+def getBooks(cursor):
+    cursor.execute("SELECT * FROM Book")
+    books = cursor.fetchall()
+    print("Books:")
+    for book in books:
+        print(book)
 
-def updateBook(cursor, isbn, new_publish_year, new_description, new_pages, new_title):
-    cursor.execute(
-        "UPDATE Book SET PublishYear = ?, Description = ?, Pages = ?, Title = ? WHERE ISBN = ?",
-        (new_publish_year, new_description, new_pages, new_title, isbn)
-    )
 
 class AddBook:
     def __init__(self, app_frame, cursor, back_action):
@@ -94,17 +92,36 @@ class AddBook:
         self.ISBN.delete(0, ctk.END)
         self.description.delete("1.0", ctk.END)
         self.category.set("Any")
+        self.author.delete(0, ctk.END)
         self.pub_date.delete(0, ctk.END)
         self.pages_num.delete(0, ctk.END)
 
     def add_action(self):
         insertBook(self.cursor, self.ISBN.get(), self.pub_date.get(), self.description.get("1.0", ctk.END).strip(), self.pages_num.get(), self.title.get())
         insertCategory(self.cursor,self.ISBN.get() , self.category.get())
-        insertAuthor(self.cursor,self.ISBN, self.author.get())
+        insertAuthor(self.cursor,self.ISBN.get(), self.author.get())
         self.cursor.commit()
         self.reset()
 
-    
+#################################################################################################################################################
+
+# edit book functions
+def get_book(cursor, isbn):
+    cursor.execute("""  SELECT Book.ISBN,Book.title, Book.PublishYear, Book.pages, Book.description
+                            FROM
+                                Book
+                            WHERE 
+                                Book.ISBN = ?;""", isbn)
+    book = cursor.fetchone()
+    return book
+
+def updateBook(cursor, isbn, new_publish_year, new_description, new_pages, new_title):
+    cursor.execute(
+        "UPDATE Book SET PublishYear = ?, Description = ?, Pages = ?, Title = ? WHERE ISBN = ?",
+        (new_publish_year, new_description, new_pages, new_title, isbn)
+    )
+
+
 class UpdateBook:
     def __init__(self, app_frame, cursor, back_action):
         self.cursor = cursor

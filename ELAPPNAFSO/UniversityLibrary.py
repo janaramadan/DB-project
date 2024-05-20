@@ -196,26 +196,26 @@ def getStudentBorrowedBooks(cursor):
 # TEST 
 def test():
     # Insert statements test
-    insertStudent(cursor, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
-    insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
-    insertAdmin(cursor, 'pass456', 'faridaaa', 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
-    insertBorrowedBook(cursor, 11, 3, 9789876543210)
-    insertCategory(cursor, 9789876543210, 'Comedy')
+    # insertStudent(cursor, '123', 'JanaRamadan', 'JanaRamadan@gmail.com', 'EGYPT', 'Cairo', '123 STREET')
+    # insertBook(cursor, 9789876543210, '2003-11-07', 'BOOK DESCRIPTION', 200, 'BOOK TITLE')
+    # insertAdmin(cursor, 'pass456', 'faridaaa', 'farida123@gmail.com', 'EGYPT', 'Cairo', '456 STREET')
+    # insertBorrowedBook(cursor, 11, 3, 9789876543210)
+    # insertCategory(cursor, 9789876543210, 'Comedy')
 
 
     #  EL Update statements test
-    updateAdminEmail(cursor, 2, 'newemail@admin.com')
-    updateBookDescription(cursor, 9789876543210, 'New Description')
+    # updateAdminEmail(cursor, 2, 'newemail@admin.com')
+    # updateBookDescription(cursor, 9789876543210, 'New Description')
 
     # EL  Delete statements test
     # deleteAdmin(cursor, 'newemail@admin.com')
     # deleteBorrowedBook(cursor, 3, 9789876543210)
 
 
-    insertCategory(cursor, 9780743273565, 'Comedy')
-    updateAdmin(cursor, 'NewUsernameADMIN', 'newadmin@example.com', 'Country', 'City', 'NewStreet')
-    updateStudent(cursor, 'NewUsernameSTUDENT', 'newstudent@example.com', 'Country', 'City', 'NewStreet')
-    updateBook(cursor, 9780061120053, '2024-01-01', 'New Description', 400, 'New Title')
+    # insertCategory(cursor, 9780743273565, 'Comedy')
+    # updateAdmin(cursor, 'NewUsernameADMIN', 'newadmin@example.com', 'Country', 'City', 'NewStreet')
+    # updateStudent(cursor, 'NewUsernameSTUDENT', 'newstudent@example.com', 'Country', 'City', 'NewStreet')
+    # updateBook(cursor, 9780061120053, '2024-01-01', 'New Description', 400, 'New Title')
 
   
     getStudents(cursor)

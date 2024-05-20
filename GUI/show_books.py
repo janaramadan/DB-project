@@ -50,11 +50,7 @@ class ViewBooks:
     def hide(self):
         self.displayCard.pack_forget()
 
-
-
-
-
-
+#################################################################################################################################################
 
 def get_filtered_books(cursor, filter_by, value):
     if filter_by == "Title":
@@ -96,18 +92,18 @@ class ViewBySearch:
         # A frame for search controls
         self.search_frame = ctk.CTkFrame(app_frame, fg_color="transparent", width=550)
 
-        self.search_bar = ctk.CTkEntry(self.search_frame, placeholder_text="search", width=400)
+        self.search_bar = ctk.CTkEntry(self.search_frame, placeholder_text="search", width=300)
         self.search_bar.grid(row=0, column=1, )
 
         options = ["Title", "ISBN", "Author", "Category", "Year"]
-        self.search_by = ctk.CTkComboBox(self.search_frame, values=options, width=80)
+        self.search_by = ctk.CTkComboBox(self.search_frame, values=options, width=100)
         self.search_by.grid(row=0, column=2)
 
-        self.search_button = ctk.CTkButton(self.search_frame, text="Search", width=80, command=self.on_search)
+        self.search_button = ctk.CTkButton(self.search_frame, text="Search", width=100, command=self.on_search)
         self.search_button.grid(row=0, column=3)
 
         self.back_button = ctk.CTkButton(self.search_frame, text="Back", fg_color="transparent", width=50, command=lambda: back_action(self))
-        self.back_button.grid(row=0, column=0, padx=(10, 0))
+        self.back_button.grid(row=0, column=0, padx=(10, 20))
 
         # A scrollable frame for displaying results
         self.displayCard = ctk.CTkScrollableFrame(app_frame, width=600, height=500)
@@ -143,10 +139,3 @@ class ViewBySearch:
         else:
             print("not found")
 
-        # self.displayCard.grid_columnconfigure(0, weight=1)  # ISBN
-        # self.displayCard.grid_columnconfigure(1, weight=1)  # Title
-        # self.displayCard.grid_columnconfigure(2, weight=1)  # Author
-        # self.displayCard.grid_columnconfigure(3, weight=1)  # Category
-        # self.displayCard.grid_columnconfigure(4, weight=1)  # Year
-        # self.displayCard.grid_columnconfigure(5, weight=1)  # # of pages
-        # self.displayCard.grid_columnconfigure(6, weight=1)  # Description

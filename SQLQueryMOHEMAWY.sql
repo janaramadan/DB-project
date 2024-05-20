@@ -25,7 +25,7 @@ CREATE TABLE Author (
 CREATE TABLE Book (
     ISBN BIGINT NOT NULL PRIMARY KEY,
     PublishYear DATE NOT NULL,
-    Description VARCHAR(255) NOT NULL,
+    Description VARCHAR(5000) NOT NULL,
     Pages INT NOT NULL,
     Title VARCHAR(80) NOT NULL
 );
@@ -203,3 +203,4 @@ JOIN Book b ON ab.ISBN = b.ISBN;
 SELECT bc.ISBN, b.Title AS BookTitle, bc.Name AS CategoryName
 FROM BookCategory bc
 JOIN Book b ON bc.ISBN = b.ISBN;
+
