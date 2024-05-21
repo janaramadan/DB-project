@@ -5,7 +5,7 @@ class MainMenu:
         self.menu = ctk.CTkFrame(app_frame, width=600, height=500)
 
         self.title_label = ctk.CTkLabel(self.menu, text="Main Menu", font=ctk.CTkFont("Arial", size=42, weight="bold"))
-        self.title_label.place(relx=0.5, rely=0.2, anchor=ctk.CENTER)    
+        self.title_label.place(relx=0.5, rely=0.15, anchor=ctk.CENTER)    
 
         self.signup = ctk.CTkButton(self.menu, text="Signup", command=signup)
         self.signup.place(relx=0.3, rely=0.35, anchor=ctk.CENTER)

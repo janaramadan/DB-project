@@ -65,6 +65,9 @@ class Report:
         for student in student_borrowed_books:
             record = ctk.CTkLabel(self.formCard, text=f"Student ID: {student[0]}, Username: {student[1]}, Total Books Borrowed: {student[2]}", font=ctk.CTkFont("Arial", size=16))
             record.pack(pady=(10, 20))
+        
+        self.back_button = ctk.CTkButton(self.formCard, text="Back", fg_color="transparent", width=50, command=lambda: back_action(self))
+        self.back_button.place(relx=0.001, rely=0.001, anchor=ctk.NW)
     
     def show(self):
         self.formCard.pack(pady=(50, 0))

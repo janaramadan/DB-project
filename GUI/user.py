@@ -159,9 +159,9 @@ class UpdateUser:
 
     def update_action(self):
         if self.is_admin.get():
-            updateAdmin(self.cursor,self.old_username, self.username, self.email, self.password, self.country, self.city, self.street)
+            updateAdmin(self.cursor,self.old_username.get(), self.username.get(), self.email.get(), self.password.get(), self.country.get(), self.city.get(), self.street.get())
         else:
-            updateStudent(self.cursor,self.old_username, self.username, self.email, self.password, self.country, self.city, self.street)
+            updateStudent(self.cursor,self.old_username.get(), self.username.get(), self.email.get(), self.password.get(), self.country.get(), self.city.get(), self.street.get())
         self.cursor.commit()
         self.reset()
         pass
